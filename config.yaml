@@ -1,0 +1,14 @@
+baseURL: http://example.org/
+title: Lazysizes with Hugo
+# alternate copyright company text
+copyright: Future Web Design
+# controls number of pages displayed on list pages
+paginate: 5
+# controls the summary length (words) on list pages
+summaryLength: 7
+# this is required so that Hugo will render HTML in markdown
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+      

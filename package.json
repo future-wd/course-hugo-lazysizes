@@ -1,0 +1,32 @@
+{
+  "name": "course-hugo-lazysizes",
+  "version": "1.0.0",
+  "description": "Online course - lazysizes for Hugo",
+  "main": "index.js",
+  "scripts": {
+    "dev": "exec-bin node_modules/.bin/hugo/hugo server --disableFastRender --gc",
+    "build": "exec-bin node_modules/.bin/hugo/hugo --gc --minify --cleanDestinationDir",
+    "renderToDisk:dev": "exec-bin node_modules/.bin/hugo/hugo server --disableFastRender --renderToDisk --cleanDestinationDir",
+    "renderToDisk:production": "exec-bin node_modules/.bin/hugo/hugo server --renderToDisk --cleanDestinationDir --disableFastRender --gc --minify --environment production",
+    "npm-check": "npx npm-check -u",
+    "postinstall": "hugo-installer --version otherDependencies.hugo --extended --destination node_modules/.bin/hugo"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.0",
+    "bootstrap": "^5.1.3",
+    "exec-bin": "^1.0.0",
+    "hugo-installer": "^3.1.0",
+    "npm-check": "^5.9.2",
+    "postcss": "^8.4.4",
+    "postcss-cli": "^9.0.2"
+  },
+  "otherDependencies": {
+    "hugo": "0.93.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/future-wd/course-hugo-image"
+  },
+  "author": "Sean Emerson",
+  "license": "ISC"
+}
