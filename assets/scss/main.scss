@@ -76,3 +76,10 @@ $utilities: map-merge(
 
 // 5. Add additional custom code here
 @import "custom-scss";
+
+
+// lazysizes css for sizes calculation
+img[data-sizes="auto"] { 
+  display: block;
+  width: 100%; 
+}
