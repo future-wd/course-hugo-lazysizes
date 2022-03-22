@@ -14,7 +14,7 @@ btn2:
 cardsTitle: Our Services
 cards:
 - title: Card 1 Title
-  img: /img/placeholder1.jpg
+  img: /img/placeholder4.jpg
   text: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto modi placeat corrupti tempora quod quidem praesentium impedit. Rem, sapiente eius?
   btn:
     text: Button 1 text
