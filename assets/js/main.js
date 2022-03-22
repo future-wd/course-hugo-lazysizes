@@ -1,3 +1,4 @@
+import 'lazysizes';
 // import the whole bootstrap library
 // import * as bootstrap from 'bootstrap';
 
