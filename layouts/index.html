@@ -99,7 +99,9 @@
         <img src="{{ $lqip | safeURL }}"
           data-src="/img/placeholder1.jpg" 
           alt="Non-responsive lazysizes" 
-          class="lazyload img-fluid lqip">
+          class="lazyload img-fluid"
+          width="{{ $src.Width }}"
+          height="{{ $src.Height }}">
       </div>
     </div>
     <div class="row d-flex justify-content-center mb-3">
