@@ -90,7 +90,7 @@ $utilities: map-merge(
 // compiles to .lazyload.placeholder, .lazyloading.placeholder
 .lazyload,
 .lazyloading {
-  &.placeholder {
+  &.lqip {
     width: 100%;
     height: auto;
   }
