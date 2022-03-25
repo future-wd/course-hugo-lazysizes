@@ -119,6 +119,15 @@
           "disableLazysizes" true
         )}}
         {{ partial "image" $disabled }}
+        <h2>Non-responsive lazysizes with LQIP</h2>
+        {{ $src := .Resources.GetMatch "placeholder1.jpg" }}
+        {{- $lqip := $src.Resize "50x gif" -}} 
+        {{- $lqip = $lqip.Filter (images.GaussianBlur 3) -}}
+        {{- $lqip = printf "data:image/gif;base64,%s" ($lqip.Content | base64Encode) -}}
+        <img src="{{ $lqip | safeURL }}"
+          data-src="/img/placeholder1.jpg" 
+          alt="Non-responsive lazysizes" 
+          class="lazyload img-fluid placeholder">
       </div>
     </div>
   </div>

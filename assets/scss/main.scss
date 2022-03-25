@@ -77,12 +77,6 @@ $utilities: map-merge(
 // 5. Add additional custom code here
 @import "custom-scss";
 
-// .no-js {
-//   .lazyload {
-//     display: none;
-//   }
-// }
-
 // disable lazyload images for noscript support
 // class will stay as .lazyload if there is no js support
 // html class with stay as .no-js
@@ -90,8 +84,20 @@ $utilities: map-merge(
   display: none;
 }
 
+// display placeholder at 100% width
+// not with .lazyloaded, to avoid applying this class
+// to full res image
+// compiles to .lazyload.placeholder, .lazyloading.placeholder
+.lazyload,
+.lazyloading {
+  &.placeholder {
+    width: 100%;
+    height: auto;
+  }
+}
+
 // lazysizes css for sizes calculation
-img[data-sizes="auto"] { 
+img[data-sizes="auto"] {
   display: block;
-  width: 100%; 
+  width: 100%;
 }
