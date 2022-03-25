@@ -133,7 +133,12 @@
 {{- if and (not site.Params.image.disableLazysizes) (not .disableLazysizes) -}}
   {{- $class = $class | append "lazyload" -}}
 {{- end -}}
+{{- /* generate LQIP and assign class */ -}}
+{{- $lqip := "" -}}
 {{- if and (not site.Params.image.disableLQIP) (not .disableLQIP) -}}
+  {{- $lqip = $src.Resize "50x gif" -}} 
+  {{- $lqip = $lqip.Filter (images.GaussianBlur 3) -}}
+  {{- $lqip = printf "data:image/gif;base64,%s" ($lqip.Content | base64Encode) -}}
   {{- $class = $class | append "lqip" -}}
 {{- end -}}
 {{- /* create sizes */ -}}
@@ -145,10 +150,13 @@
 {{- end -}}
 {{- /* generate picture tag */ -}}
 <picture>
-  <source srcset="{{ $srcsetWebp }}" type="image/webp">
-  <source srcset="{{ $srcsetOrig }}" type="{{ $src.MediaType }}">
-  <img 
-    src="{{ $src.RelPermalink }}" 
+  <source data-srcset="{{ $srcsetWebp }}" type="image/webp">
+  <source data-srcset="{{ $srcsetOrig }}" type="{{ $src.MediaType }}">
+  <img
+    {{ if $lqip -}}
+    src="{{ $lqip | safeURL }}"
+    {{ end -}}
+    data-src="{{ $src.RelPermalink }}" 
     alt="{{ .alt | default ( (.caption | markdownify | plainify) | default (printf "Image of %s" $title)) }}" 
     title="{{ $title }}"
     height="{{ $src.Height }}" 
