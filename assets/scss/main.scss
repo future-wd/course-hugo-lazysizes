@@ -77,6 +77,18 @@ $utilities: map-merge(
 // 5. Add additional custom code here
 @import "custom-scss";
 
+// .no-js {
+//   .lazyload {
+//     display: none;
+//   }
+// }
+
+// disable lazyload images for noscript support
+// class will stay as .lazyload if there is no js support
+// html class with stay as .no-js
+.no-js .lazyload {
+  display: none;
+}
 
 // lazysizes css for sizes calculation
 img[data-sizes="auto"] { 
