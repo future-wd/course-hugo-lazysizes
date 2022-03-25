@@ -88,9 +88,10 @@ $utilities: map-merge(
 // not with .lazyloaded, to avoid applying this class
 // to full res image
 // compiles to .lazyload.placeholder, .lazyloading.placeholder
+// .lazyloaded.img-fluid is max-width: 100%; height: auto;  
 .lazyload,
 .lazyloading {
-  &.lqip {
+  &.lqip-fluid {
     width: 100%;
     height: auto;
   }
