@@ -139,7 +139,9 @@
   {{- $lqip = $src.Resize "50x gif" -}} 
   {{- $lqip = $lqip.Filter (images.GaussianBlur 3) -}}
   {{- $lqip = printf "data:image/gif;base64,%s" ($lqip.Content | base64Encode) -}}
-  {{- $class = $class | append "lqip-fluid" -}}
+  {{- if not .width }}
+    {{- $class = $class | append "lqip-fluid" -}}
+  {{- end -}}
 {{- end -}}
 {{- /* create sizes */ -}}
 {{- $sizes := "100vw" -}}
