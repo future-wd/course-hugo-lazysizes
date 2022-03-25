@@ -11,4 +11,11 @@ markup:
   goldmark:
     renderer:
       unsafe: true
-      
+
+params:
+  image:
+    widths: [600, 900, 1300]
+    densities: [1,2]
+    class: img-fluid
+    figureClass: figure
+    disableLazysizes: false

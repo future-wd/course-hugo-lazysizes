@@ -89,6 +89,38 @@
         </noscript>
       </div>
     </div>
+    <div class="row d-flex justify-content-center mb-3">
+      <div class="col-md-6">
+        <h2>Fixed width responsive lazysizes (partial)</h2>
+        {{ $fixed := (dict
+          "page" . 
+          "src" "placeholder1.jpg"
+          "width" 300
+        )}}
+        {{ partial "image" $fixed }}
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center mb-3">
+      <div class="col-md-6">
+        <h2>Variable width responsive with lazysizes (partial)</h2>
+        {{ $responsive := (dict
+          "page" . 
+          "src" "placeholder1.jpg"
+        )}}
+        {{ partial "image" $responsive }}
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center mb-3">
+      <div class="col-md-6">
+        <h2>Lazysizes disabled inline (partial)</h2>
+        {{ $disabled := (dict
+          "page" . 
+          "src" "placeholder1.jpg"
+          "disableLazysizes" true
+        )}}
+        {{ partial "image" $disabled }}
+      </div>
+    </div>
   </div>
 </section>
 {{ end }}
