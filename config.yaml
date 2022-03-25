@@ -19,3 +19,7 @@ params:
     class: img-fluid
     figureClass: figure
     disableLazysizes: false
+    lqip:
+      size: 50
+      blur: 3
+      disable: false

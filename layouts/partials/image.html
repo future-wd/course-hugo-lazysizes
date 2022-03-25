@@ -166,7 +166,3 @@
     class="{{ delimit $class " " }}"
     sizes="{{ $sizes }}">
 </picture>
-{{/*
-  {{- $lqip = $src.Resize (printf "%vx gif" (site.Params.image.lqip.blur.size | default 50 )) -}} 
-        {{- $lqip = $lqip.Filter (images.GaussianBlur (site.Params.image.lqip.blur.amount | default 3)) -}}
-  */}}
