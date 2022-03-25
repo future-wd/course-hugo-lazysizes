@@ -89,6 +89,18 @@
         </noscript>
       </div>
     </div>
+    <div class="row d-flex justify-content-center mb-3">
+      <div class="col-md-6">
+        <h2>Non-responsive lazysizes with LQIP</h2>
+        {{ $src := .Resources.GetMatch "placeholder1.jpg" }}
+        {{- $lqip = $src.Resize (printf "%vx gif" (site.Params.image.lqip.blur.size | default 50 )) -}} 
+        {{- $lqip = $lqip.Filter (images.GaussianBlur (site.Params.image.lqip.blur.amount | default 3)) -}}
+        <img src="{{ $lqip }}"
+          data-src="/img/placeholder1.jpg" 
+          alt="Non-responsive lazysizes" 
+          class="lazyload img-fluid">
+      </div>
+    </div>
   </div>
 </section>
 {{ end }}
