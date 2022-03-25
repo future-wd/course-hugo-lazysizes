@@ -84,19 +84,6 @@ $utilities: map-merge(
   display: none;
 }
 
-// display placeholder at 100% width
-// not with .lazyloaded, to avoid applying this class
-// to full res image
-// compiles to .lazyload.placeholder, .lazyloading.placeholder
-// .lazyloaded.img-fluid is max-width: 100%; height: auto;  
-.lazyload,
-.lazyloading {
-  &.lqip-fluid {
-    width: 100%;
-    height: auto;
-  }
-}
-
 // lazysizes css for sizes calculation
 img[data-sizes="auto"] {
   display: block;
