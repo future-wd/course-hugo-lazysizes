@@ -133,6 +133,9 @@
 {{- if and (not site.Params.image.disableLazysizes) (not .disableLazysizes) -}}
   {{- $class = $class | append "lazyload" -}}
 {{- end -}}
+{{- if and (not site.Params.image.disableLQIP) (not .disableLQIP) -}}
+  {{- $class = $class | append "lqip" -}}
+{{- end -}}
 {{- /* create sizes */ -}}
 {{- $sizes := "100vw" -}}
 {{- if .sizes -}}

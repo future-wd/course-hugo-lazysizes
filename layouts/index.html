@@ -91,6 +91,19 @@
     </div>
     <div class="row d-flex justify-content-center mb-3">
       <div class="col-md-6">
+        <h2>Non-responsive lazysizes with LQIP</h2>
+        {{ $src := .Resources.GetMatch "placeholder1.jpg" }}
+        {{- $lqip := $src.Resize "50x gif" -}} 
+        {{- $lqip = $lqip.Filter (images.GaussianBlur 3) -}}
+        {{- $lqip = printf "data:image/gif;base64,%s" ($lqip.Content | base64Encode) -}}
+        <img src="{{ $lqip | safeURL }}"
+          data-src="/img/placeholder1.jpg" 
+          alt="Non-responsive lazysizes" 
+          class="lazyload img-fluid placeholder">
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center mb-3">
+      <div class="col-md-6">
         <h2>Fixed width responsive lazysizes (partial)</h2>
         {{ $fixed := (dict
           "page" . 
@@ -112,22 +125,14 @@
     </div>
     <div class="row d-flex justify-content-center mb-3">
       <div class="col-md-6">
-        <h2>Lazysizes disabled inline (partial)</h2>
+        <h2>Lazysizes (and LQIP - redundant) disabled inline (partial)</h2>
         {{ $disabled := (dict
           "page" . 
           "src" "placeholder1.jpg"
           "disableLazysizes" true
+          "disableLQIP" true
         )}}
         {{ partial "image" $disabled }}
-        <h2>Non-responsive lazysizes with LQIP</h2>
-        {{ $src := .Resources.GetMatch "placeholder1.jpg" }}
-        {{- $lqip := $src.Resize "50x gif" -}} 
-        {{- $lqip = $lqip.Filter (images.GaussianBlur 3) -}}
-        {{- $lqip = printf "data:image/gif;base64,%s" ($lqip.Content | base64Encode) -}}
-        <img src="{{ $lqip | safeURL }}"
-          data-src="/img/placeholder1.jpg" 
-          alt="Non-responsive lazysizes" 
-          class="lazyload img-fluid placeholder">
       </div>
     </div>
   </div>
