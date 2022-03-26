@@ -132,11 +132,13 @@
 {{- $lqip = $lqip.Filter (images.GaussianBlur 4) -}}
 {{- $lqip = printf "data:image/gif;base64,%s" ($lqip.Content | base64Encode) -}}
 {{- /* generate sizes */ -}}
-{{- $sizes := "sizes='100vw'" -}}
-{{ if .sizes }}
+{{- $sizes := "" -}}
+{{- if not .width -}}
+  {{- if .sizes -}}
     {{- $sizes = printf "sizes='%s'" .sizes -}}
-{{- else if (not .width) -}}
+  {{- else -}}
     {{- $sizes = "data-sizes='auto'" -}}
+  {{- end -}}
 {{- end -}}
 {{- /* generate class */ -}}
 {{- $class := slice -}}
