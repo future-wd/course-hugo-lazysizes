@@ -102,3 +102,13 @@ img[data-sizes="auto"] {
     height: auto;
   }
 }
+
+// blur up css
+.blur-up.lqip {
+  filter: blur(1px);
+  transition: filter 500ms;
+
+  &.lazyloaded {
+    filter: blur(0);
+  }
+}

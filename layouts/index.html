@@ -113,6 +113,20 @@
         </noscript>
       </div>
     </div>
+    <div class="row d-flex justify-content-center mb-3">
+      <div class="col-md-6">
+        <h2>LQIP with blur-up</h2>
+        <img src="{{ $lqip | safeURL }}"
+          data-src="{{ $src.RelPermalink }}" 
+          width="{{ $src.Width }}"
+          height="{{ $src.Height }}"
+          alt="LQIP with blur-up" 
+          class="lazyload img-fluid lqip blur-up">
+        <noscript>
+          <img src="/img/placeholder6.jpg" alt="Noscript pattern lazysizes" class="img-fluid">
+        </noscript>
+      </div>
+    </div>
   </div>
 </section>
 {{ end }}
