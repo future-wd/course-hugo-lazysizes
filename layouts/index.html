@@ -56,14 +56,20 @@
     <div class="row d-flex justify-content-center mb-3">
       <div class="col-md-6">
         <h2>Native Lazy Loading</h2>
-        <img src="/img/placeholder1.jpg" alt="Native Lazy Loading" loading="lazy">
+        <img src="/img/placeholder1.jpg" alt="Native Lazy Loading" loading="lazy" class="img-fluid">
       </div>
     </div>
-  </div>
-  <div class="row d-flex justify-content-center mb-3">
-    <div class="col-md-6">
-      <h2>Non-responsive lazysizes</h2>
-      <img data-src="/img/placeholder1.jpg" alt="Non-responsive lazysizes" class="lazyload">
+    <div class="row d-flex justify-content-center mb-3">
+      <div class="col-md-6">
+        <h2>Non-responsve Lazy Loading with Lazysizes</h2>
+        <img data-src="/img/placeholder5.jpg" alt="Native Lazy Loading" class="lazyload img-fluid">
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center mb-3">
+      <div class="col-md-6">
+        <h2>Fixed width with Lazysizes</h2>
+        <img data-src="/img/placeholder5.jpg" alt="Fixed width with Lazysizes" class="lazyload img-fluid">
+      </div>
     </div>
   </div>
   <div class="row d-flex justify-content-center mb-3">
@@ -74,3 +80,5 @@
   </div>
 </section>
 {{ end }}
+
+	data-srcset="image.jpg 1x, image2.jpg 2x"
