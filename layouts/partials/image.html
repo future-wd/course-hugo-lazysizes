@@ -143,10 +143,18 @@
 {{- /* generate class */ -}}
 {{- $class := slice -}}
 {{- $class = $class | append (slice "lazyload") -}}
-{{- $defaultResponsiveClass := site.Params.image.class | default "img-fluid" -}}
-{{- if not .width }}
-  {{- $class = $class | append $defaultResponsiveClass -}}
+{{- if .class -}}
+  {{- $class = $class | append (slice .class) -}}
+{{- else -}}
+  {{- if .width }}
+    {{- $fixedClass := site.Params.image.fixedClass | default "" -}}
+    {{- $class = $class | append $fixedClass -}}
+  {{- else -}}
+    {{- $responsiveClass := site.Params.image.responsiveClass | default "img-fluid" -}}
+    {{- $class = $class | append $responsiveClass -}}
+  {{- end -}}
 {{- end -}}
+{{- $class = $class | append (slice "blur-up") -}}
 {{- /* generate picture tag */ -}}
 <picture>
   <source srcset="{{ $srcsetWebp }}" type="image/webp">
