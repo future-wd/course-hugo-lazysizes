@@ -145,7 +145,6 @@
 {{- end -}}
 {{- /* generate class */ -}}
 {{- $class := slice -}}
-{{- $class = $class | append (slice "lazyload") -}}
 {{- if .class -}}
   {{- $class = $class | append (slice .class) -}}
 {{- else -}}
@@ -157,6 +156,8 @@
     {{- $class = $class | append $responsiveClass -}}
   {{- end -}}
 {{- end -}}
+{{- $noscriptClass := $class -}}
+{{- $class = $class | append (slice "lazyload") -}}
 {{- if and (not site.Params.image.disableBlurUp) (not .disableBlurUp) -}}
   {{- $class = $class | append (slice "blur-up") -}}
 {{- end -}}
@@ -178,4 +179,13 @@
     width="{{ $src.Width }}"
     class="{{ delimit $class " " }}"
     {{ $sizes | safeHTMLAttr }}>
+    <noscript>
+      <img 
+        src="{{ $src.RelPermalink }}" 
+        alt="{{ .alt | default ( (.caption | markdownify | plainify) | default (printf "Image of %s" $title)) }}" 
+        title="{{ $title }}"
+        height="{{ $src.Height }}" 
+        width="{{ $src.Width }}"
+        class="{{ delimit $noscriptClass " " }}">
+    </noscript>
 </picture>
