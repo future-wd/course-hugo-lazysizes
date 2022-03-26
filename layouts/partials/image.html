@@ -127,16 +127,35 @@
 {{- else if .figureTitle -}}
   {{- $title = .figureTitle -}}
 {{- end -}}
+{{- /* generate LQIP */ -}}
+{{- $lqip := $src.Resize "50x gif" -}}
+{{- $lqip = $lqip.Filter (images.GaussianBlur 4) -}}
+{{- $lqip = printf "data:image/gif;base64,%s" ($lqip.Content | base64Encode) -}}
+{{- /* generate sizes */ -}}
+{{- $sizes := "sizes='100vw'" -}}
+{{ if .sizes }}
+    {{- $sizes = printf "sizes='%s'" .sizes -}}
+{{- else if (not .widths) -}}
+    {{- $sizes = "data-sizes='auto'" -}}
+{{- end -}}
+{{- /* generate class */ -}}
+{{- $class := slice -}}
+{{- $class = $class | append (slice "lazyload") -}}
+{{- $defaultResponsiveClass := site.Params.image.class | default "img-fluid" -}}
+{{- if not .width }}
+  {{- $class = $class | append $defaultResponsiveClass -}}
+{{- end -}}
 {{- /* generate picture tag */ -}}
 <picture>
   <source srcset="{{ $srcsetWebp }}" type="image/webp">
   <source srcset="{{ $srcsetOrig }}" type="{{ $src.MediaType }}">
   <img 
-    src="{{ $src.RelPermalink }}" 
+    src="{{ $lqip | safeURL }}"
+    data-src="{{ $src.RelPermalink }}" 
     alt="{{ .alt | default ( (.caption | markdownify | plainify) | default (printf "Image of %s" $title)) }}" 
     title="{{ $title }}"
     height="{{ $src.Height }}" 
     width="{{ $src.Width }}"
-    class="{{ .class | default ( site.Params.image.class | default "img-fluid") }}"
-    sizes="{{ .sizes | default "100vw" }}">
+    class="{{ delimit $class " " }}"
+    {{ $sizes | safeHTMLAttr }}>
 </picture>
