@@ -83,3 +83,9 @@ img[data-sizes="auto"] {
   display: block;
   width: 100%; 
 }
+
+// noscript support
+
+.no-js .lazyload {
+  display: none;
+}
