@@ -128,8 +128,9 @@
   {{- $title = .figureTitle -}}
 {{- end -}}
 {{- /* generate LQIP */ -}}
+{{- $lqip := "" -}}
 {{- if and (not site.Params.image.disableLQIP) (not .disableLQIP) -}}
-  {{- $lqip := $src.Resize (printf "%dx gif" (site.Params.image.LQIPSize | default 50) ) -}}
+  {{- $lqip = $src.Resize (printf "%dx gif" (site.Params.image.LQIPSize | default 50) ) -}}
   {{- $lqip = $lqip.Filter (images.GaussianBlur (site.Params.image.LQIPBlur | default 4)) -}}
   {{- $lqip = printf "data:image/gif;base64,%s" ($lqip.Content | base64Encode) -}}
 {{- end -}}
@@ -167,7 +168,9 @@
   <source srcset="{{ $srcsetWebp }}" type="image/webp">
   <source srcset="{{ $srcsetOrig }}" type="{{ $src.MediaType }}">
   <img 
+    {{ if $lqip -}}
     src="{{ $lqip | safeURL }}"
+    {{ end -}}
     data-src="{{ $src.RelPermalink }}" 
     alt="{{ .alt | default ( (.caption | markdownify | plainify) | default (printf "Image of %s" $title)) }}" 
     title="{{ $title }}"
