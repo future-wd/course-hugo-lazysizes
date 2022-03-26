@@ -127,6 +127,16 @@
         </noscript>
       </div>
     </div>
+    <div class="row d-flex justify-content-center mb-3">
+      <div class="col-md-6">
+        <h2>Image partial with lazysizes</h2>
+        {{ $dict := (dict
+        "page" . 
+        "src" "placeholder8.jpg"
+        )}}
+        {{ partial "image" $dict }}
+      </div>
+    </div>
   </div>
 </section>
 {{ end }}
