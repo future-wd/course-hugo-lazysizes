@@ -142,22 +142,19 @@
 {{- end -}}
 {{- /* generate class */ -}}
 {{- $class := slice -}}
-{{- $noscriptClass := slice -}}
-{{- $class = $class | append (slice "lazyload") -}}
 {{- if .class -}}
   {{- $class = $class | append (slice .class) -}}
-  {{- $noscriptClass = $noscriptClass | append (slice .class) -}}
 {{- else -}}
   {{- if .width }}
     {{- $fixedClass := site.Params.image.fixedClass | default "" -}}
     {{- $class = $class | append $fixedClass -}}
-    {{- $noscriptClass = $noscriptClass | append $fixedClass -}}
   {{- else -}}
     {{- $responsiveClass := site.Params.image.responsiveClass | default "img-fluid" -}}
     {{- $class = $class | append $responsiveClass -}}
-    {{- $noscriptClass = $noscriptClass | append $responsiveClass -}}
   {{- end -}}
 {{- end -}}
+{{- $noscriptClass := $class -}}
+{{- $class = $class | append (slice "lazyload") -}}
 {{- $class = $class | append (slice "blur-up") -}}
 {{- $class = $class | append (slice "lqip") -}}
 {{- /* generate picture tag */ -}}
