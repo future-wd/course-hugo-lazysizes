@@ -142,16 +142,20 @@
 {{- end -}}
 {{- /* generate class */ -}}
 {{- $class := slice -}}
+{{- $noscriptClass := slice -}}
 {{- $class = $class | append (slice "lazyload") -}}
 {{- if .class -}}
   {{- $class = $class | append (slice .class) -}}
+  {{- $noscriptClass = $noscriptClass | append (slice .class) -}}
 {{- else -}}
   {{- if .width }}
     {{- $fixedClass := site.Params.image.fixedClass | default "" -}}
     {{- $class = $class | append $fixedClass -}}
+    {{- $noscriptClass = $noscriptClass | append $fixedClass -}}
   {{- else -}}
     {{- $responsiveClass := site.Params.image.responsiveClass | default "img-fluid" -}}
     {{- $class = $class | append $responsiveClass -}}
+    {{- $noscriptClass = $noscriptClass | append $responsiveClass -}}
   {{- end -}}
 {{- end -}}
 {{- $class = $class | append (slice "blur-up") -}}
@@ -169,4 +173,13 @@
     width="{{ $src.Width }}"
     class="{{ delimit $class " " }}"
     {{ $sizes | safeHTMLAttr }}>
+    <noscript>
+      <img 
+        src="{{ $src.RelPermalink }}" 
+        alt="{{ .alt | default ( (.caption | markdownify | plainify) | default (printf "Image of %s" $title)) }}" 
+        title="{{ $title }}"
+        height="{{ $src.Height }}" 
+        width="{{ $src.Width }}"
+        class="{{ delimit $noscriptClass " " }}">
+    </noscript>
 </picture>
