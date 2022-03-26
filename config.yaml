@@ -16,5 +16,6 @@ params:
   image:
     widths: [600, 900, 1300]
     # densities: [1,2]
-    class: img-fluid
+    responsiveClass: img-fluid
+    fixedClass: ""
     figureClass: figure
