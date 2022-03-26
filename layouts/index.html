@@ -98,7 +98,16 @@
     <div class="row d-flex justify-content-center mb-3">
       <div class="col-md-6">
         <h2>LQIP with lazysizes</h2>
-        <img data-src="/img/placeholder6.jpg" alt="LQIP with lazysizes" class="lazyload img-fluid">
+        {{- $src := .Resources.GetMatch "placeholder7.jpg" -}}
+        {{- $lqip := $src.Resize "50x gif" -}}
+        {{- $lqip = $lqip.Filter (images.GaussianBlur 3) -}}
+        {{- $lqip = printf "data:image/gif;base64,%s" ($lqip.Content | base64Encode) -}}
+        <img src="{{ $lqip | safeURL }}"
+          data-src="{{ $src.RelPermalink }}" 
+          width="{{ $src.Width }}"
+          height="{{ $src.Height }}"
+          alt="LQIP with lazysizes" 
+          class="lazyload img-fluid lqip">
         <noscript>
           <img src="/img/placeholder6.jpg" alt="Noscript pattern lazysizes" class="img-fluid">
         </noscript>
