@@ -100,7 +100,7 @@
         <h2>LQIP with lazysizes</h2>
         {{- $src := .Resources.GetMatch "placeholder7.jpg" -}}
         {{- $lqip := $src.Resize "50x gif" -}}
-        {{- $lqip = $lqip.Filter (images.GaussianBlur 3) -}}
+        {{- $lqip = $lqip.Filter (images.GaussianBlur 4) -}}
         {{- $lqip = printf "data:image/gif;base64,%s" ($lqip.Content | base64Encode) -}}
         <img src="{{ $lqip | safeURL }}"
           data-src="{{ $src.RelPermalink }}" 

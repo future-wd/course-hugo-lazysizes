@@ -91,7 +91,14 @@ img[data-sizes="auto"] {
 }
 
 // lqip full width
-.lazyload.lqip {
-  width: 100%;
-  height: auto;
+// .lazyload.lqip, .lazyloading.lqip {
+//   width: 100%;
+//   height: auto;
+// }
+
+.lazyload, .lazyloading {
+  &.lqip {
+     width: 100%;
+    height: auto;
+  }
 }
