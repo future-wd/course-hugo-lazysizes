@@ -135,7 +135,7 @@
 {{- $sizes := "sizes='100vw'" -}}
 {{ if .sizes }}
     {{- $sizes = printf "sizes='%s'" .sizes -}}
-{{- else if (not .widths) -}}
+{{- else if (not .width) -}}
     {{- $sizes = "data-sizes='auto'" -}}
 {{- end -}}
 {{- /* generate class */ -}}
