@@ -89,3 +89,9 @@ img[data-sizes="auto"] {
 .no-js .lazyload {
   display: none;
 }
+
+// lqip full width
+.lazyload.lqip {
+  width: 100%;
+  height: auto;
+}
