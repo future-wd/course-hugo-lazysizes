@@ -128,9 +128,11 @@
   {{- $title = .figureTitle -}}
 {{- end -}}
 {{- /* generate LQIP */ -}}
-{{- $lqip := $src.Resize "50x gif" -}}
-{{- $lqip = $lqip.Filter (images.GaussianBlur 4) -}}
-{{- $lqip = printf "data:image/gif;base64,%s" ($lqip.Content | base64Encode) -}}
+{{- if and (not site.Params.image.disableLQIP) (not .disableLQIP) -}}
+  {{- $lqip := $src.Resize (printf "%dx gif" (site.Params.image.LQIPSize | default 50) ) -}}
+  {{- $lqip = $lqip.Filter (images.GaussianBlur (site.Params.image.LQIPBlur | default 4)) -}}
+  {{- $lqip = printf "data:image/gif;base64,%s" ($lqip.Content | base64Encode) -}}
+{{- end -}}
 {{- /* generate sizes */ -}}
 {{- $sizes := "" -}}
 {{- if not .width -}}
@@ -154,8 +156,12 @@
     {{- $class = $class | append $responsiveClass -}}
   {{- end -}}
 {{- end -}}
-{{- $class = $class | append (slice "blur-up") -}}
-{{- $class = $class | append (slice "lqip") -}}
+{{- if and (not site.Params.image.disableBlurUp) (not .disableBlurUp) -}}
+  {{- $class = $class | append (slice "blur-up") -}}
+{{- end -}}
+{{- if and (not site.Params.image.disableLQIP) (not .disableLQIP) -}}
+  {{- $class = $class | append (slice "lqip") -}}
+{{- end -}}
 {{- /* generate picture tag */ -}}
 <picture>
   <source srcset="{{ $srcsetWebp }}" type="image/webp">

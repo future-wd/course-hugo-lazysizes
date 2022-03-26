@@ -19,3 +19,7 @@ params:
     responsiveClass: img-fluid
     fixedClass: ""
     figureClass: figure
+    LQIPSize: 50
+    LQIPBlur: 4
+    disableLQIP: false
+    disableBlurUp: false
